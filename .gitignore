@@ -27,3 +27,6 @@ pnpm-debug.log*
 
 # Local MCP / dev machine config
 .mcp*.json
+
+# temp deploy worktree
+.gh-pages-tmp/
