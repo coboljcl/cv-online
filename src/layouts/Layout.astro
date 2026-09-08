@@ -48,12 +48,32 @@ const navGlyphs: Record<string, string> = {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content="CV - {name} | {title}" />
+		<meta name="description" content="{name} — {title} especializado en COBOL, DB2, JCL y CICS en entornos Mainframe para el sector bancario. 100+ programas implementados, más de 2 años de experiencia en sistemas críticos." />
 		<meta name="theme-color" content="#10151d" />
+		<meta name="author" content={name} />
+		<meta name="keywords" content="Programador COBOL, Mainframe, DB2, JCL, CICS, desarrollador, ingeniero, sistemas críticos, banca, Allan Zúñiga" />
+
+
+		<!-- Open Graph (para compartir en LinkedIn / WhatsApp / Facebook) -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="{name} | {title}" />
+		<meta property="og:description" content="{title} especializado en COBOL y Mainframe para el sector bancario. 100+ programas implementados, más de 2 años de experiencia." />
+		<meta property="og:image" content="/og-banner.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:url" content="https://coboljcl.github.io/cv-online/" />
+		<meta property="og:locale" content="es_ES" />
+		<meta property="og:site_name" content="CV Online — {name}" />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="{name} | {title}" />
+		<meta name="twitter:description" content="{title} especializado en COBOL y Mainframe para el sector bancario." />
+		<meta name="twitter:image" content="/og-banner.png" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-		<title>{name} | {title}</title>
+		<title>{name} | {title} · Mainframe</title>
 	</head>
 	<body class="font-['Inter',system-ui,sans-serif] bg-bg text-text antialiased">
 		<div class="min-h-screen lg:flex">
