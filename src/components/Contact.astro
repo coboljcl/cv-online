@@ -1,0 +1,134 @@
+---
+import SectionHeading from './SectionHeading.astro';
+// Formulario de contacto conectado a Web3Forms (sin backend).
+// La clave es pública y solo permite recibir mensajes en tu correo.
+// Documentación: https://docs.web3forms.com
+// ---------------------------------------------------------------
+const FORM_ENDPOINT = "https://api.web3forms.com/submit";
+const ACCESS_KEY = "ee7a6d75-71c7-4d40-9749-747768cee065";
+---
+<section id="contacto" class="py-20 lg:py-24 px-8 lg:px-16 bg-bg">
+	<div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
+		<!-- ===== Izquierda: introducción ===== -->
+		<div class="reveal">
+			<SectionHeading label="Contacto" title="¿Trabajamos juntos?" icon="contacto" />
+			<p class="text-text-muted leading-relaxed max-w-md mb-8">
+				Cuéntame tu proyecto. Estoy abierto a oportunidades laborales y colaboraciones en el ámbito del desarrollo de sistemas y mantenimiento de aplicaciones.
+			</p>
+
+			<p class="font-semibold text-primary text-lg mb-6">Disponible para nuevas oportunidades</p>
+
+			<!-- Social -->
+			<div class="flex flex-wrap gap-6">
+				<a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-primary font-medium transition-colors">LinkedIn</a>
+				<a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-primary font-medium transition-colors">GitHub</a>
+			</div>
+		</div>
+
+		<!-- ===== Derecha: formulario ===== -->
+		<form id="contact-form" data-endpoint={FORM_ENDPOINT} class="reveal reveal-delay-1 grid grid-cols-1 sm:grid-cols-2 gap-6">
+			<input type="hidden" name="access_key" value={ACCESS_KEY} />
+			<div class="flex flex-col gap-2.5">
+				<label for="name" class="text-sm font-semibold text-white">Tu nombre</label>
+				<input
+					id="name"
+					name="name"
+					type="text"
+					required
+					placeholder="Nombre y apellidos"
+					class="bg-nav border border-line rounded-lg px-4 py-3 text-text placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 transition-colors"
+				/>
+			</div>
+
+			<div class="flex flex-col gap-2.5">
+				<label for="email" class="text-sm font-semibold text-white">Tu correo</label>
+				<input
+					id="email"
+					name="email"
+					type="email"
+					required
+					placeholder="tu@correo.com"
+					class="bg-nav border border-line rounded-lg px-4 py-3 text-text placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 transition-colors"
+				/>
+			</div>
+
+			<div class="flex flex-col gap-2.5 sm:col-span-2">
+				<label for="subject" class="text-sm font-semibold text-white">Asunto</label>
+				<input
+					id="subject"
+					name="subject"
+					type="text"
+					required
+					placeholder="Motivo de contacto"
+					class="bg-nav border border-line rounded-lg px-4 py-3 text-text placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 transition-colors"
+				/>
+			</div>
+
+			<div class="flex flex-col gap-2.5 sm:col-span-2">
+				<label for="message" class="text-sm font-semibold text-white">Mensaje</label>
+				<textarea
+					id="message"
+					name="message"
+					rows="5"
+					required
+					placeholder="Escribe tu mensaje aquí..."
+					class="bg-nav border border-line rounded-lg px-4 py-3 text-text placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 transition-colors resize-y"
+				></textarea>
+			</div>
+
+			<div class="sm:col-span-2">
+				<button
+					type="submit"
+					class="w-full sm:w-auto inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white text-sm font-semibold uppercase tracking-wide px-8 py-3.5 rounded-lg transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+				>
+					Enviar mensaje
+				</button>
+				<p id="form-status" class="mt-4 text-sm text-text-muted" role="status" aria-live="polite"></p>
+			</div>
+		</form>
+	</div>
+
+	<div class="reveal mt-20 pt-8 border-t border-line text-center">
+		<p class="text-text-muted/50 text-sm">&copy; {new Date().getFullYear()} Allan Zúñiga &mdash; Programador COBOL</p>
+	</div>
+</section>
+
+<script>
+	const form = document.getElementById("contact-form");
+	if (form) {
+		form.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			const status = document.getElementById("form-status");
+			const button = form.querySelector("button[type='submit']");
+			const endpoint = form.dataset.endpoint;
+
+			if (!endpoint || endpoint === "@") {
+				if (status) status.textContent = "El formulario aún no está configurado para enviar. Gracias por tu interés.";
+				return;
+			}
+
+			button.disabled = true;
+			if (status) status.textContent = "Enviando...";
+
+			const data = new FormData(form);
+			try {
+				const res = await fetch(endpoint, {
+					method: "POST",
+					body: data,
+					headers: { Accept: "application/json" },
+				});
+				const json = await res.json();
+				if (json.success) {
+					form.reset();
+					if (status) status.textContent = "¡Mensaje enviado con éxito! Te responderé pronto.";
+				} else {
+					throw new Error(json.message || "error");
+				}
+			} catch (err) {
+				if (status) status.textContent = "No se pudo enviar. Inténtalo de nuevo o usa otro medio de contacto.";
+			} finally {
+				button.disabled = false;
+			}
+		});
+	}
+</script>

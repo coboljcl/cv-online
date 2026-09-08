@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "openpencil": {
+      "command": "/home/ankurika/.bun/bin/openpencil-mcp",
+      "args": [],
+      "lifecycle": "lazy",
+      "directTools": true
+    }
+  }
+}

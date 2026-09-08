@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Brand dark theme — blue + orange on charcoal */
+  --color-primary: #1f7ae0;
+  --color-primary-light: #3a8ff0;
+  --color-primary-dark: #1a64bf;
+  --color-accent: #f7a427;
+  --color-accent-dark: #d78a10;
+
+  /* Surfaces */
+  --color-bg: #10151d;          /* page background (darkest) */
+  --color-surface: #171d27;     /* section / main panel */
+  --color-surface-alt: #1e2531; /* card / alt panel */
+  --color-nav: #1c2331;         /* nav button background */
+  --color-nav-hover: #28303f;
+
+  /* Text */
+  --color-text: #eef2f7;
+  --color-text-muted: #94a3b4;
+
+  /* Lines */
+  --color-line: #2a3342;
+}
+
+/* Smooth scroll + section snap (each section anchors to viewport) */
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
+/* Reveal animation classes */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* Hero entrance animation */
+.hero-slide-up {
+  opacity: 0;
+  animation: heroSlideUp 0.8s ease-out forwards;
+}
+
+@keyframes heroSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glow pulse for accent elements */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 5px rgba(31, 122, 224, 0.35); }
+  50% { box-shadow: 0 0 20px rgba(31, 122, 224, 0.55); }
+}
+
+.glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* Timeline line animation */
+@keyframes lineGrow {
+  from { height: 0; }
+  to { height: 100%; }
+}
+
+.timeline-line {
+  animation: lineGrow 1.5s ease-out forwards;
+}
+
+/* Skill tag hover */
+.skill-tag {
+  transition: all 0.2s ease;
+}
+
+.skill-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31, 122, 224, 0.35);
+}
+
+/* ==== Sidebar nav item (base style + active state, single class) ==== */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-left: 2px solid transparent;
+  background: #1c2331;
+  color: #94a3b4;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  background: #28303f;
+  color: #fff;
+}
+
+.nav-item.is-active {
+  background: #1f7ae0;
+  color: #fff;
+  border-left-color: #1f7ae0;
+  box-shadow: 0 4px 20px rgba(31, 122, 224, 0.25);
+}
+
+.nav-item svg {
+  transition: transform 0.3s ease;
+}
+.nav-item:hover svg {
+  transform: scale(1.1);
+}
+
+/* Pages sections: snap each section to the top, with breathing room */
+main section[id] {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  scroll-margin-top: 0;
+}
