@@ -1,12 +1,13 @@
 ---
 const { name, title } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
-<section id="inicio" class="relative min-h-[calc(100vh-0px)] flex items-stretch overflow-hidden bg-bg">
+<section id="inicio" class="relative py-16 lg:py-0 lg:min-h-[calc(100vh-0px)] flex items-stretch overflow-hidden bg-bg">
 	<!-- Thin accent border to separate hero from sidebar -->
 	<div class="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-primary to-accent opacity-40 hidden lg:block"></div>
 
-	<div class="relative z-10 w-full grid lg:grid-cols-[1.2fr_1fr] gap-10 items-center px-8 py-16 lg:px-16 lg:py-0 max-w-6xl mx-auto">
+	<div class="relative z-10 w-full grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center px-6 py-8 lg:px-16 lg:py-0 max-w-6xl mx-auto">
 		<!-- ===== Left: intro ===== -->
 		<div class="max-w-2xl">
 			<!-- eyebrow -->
@@ -15,13 +16,13 @@ const { name, title } = Astro.props;
 			</p>
 
 			<!-- Heading in two lines, accent on the second line -->
-			<h1 class="hero-slide-up text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white mb-6" style="animation-delay: 0.1s">
+			<h1 class="hero-slide-up text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white mb-6" style="animation-delay: 0.1s">
 				Programador COBOL
 				<span class="text-primary">Mainframe</span>
 			</h1>
 
 			<!-- Subtitle -->
-			<p class="hero-slide-up text-base md:text-lg text-text-muted leading-relaxed max-w-lg mb-8 text-justify" style="animation-delay: 0.2s">
+			<p class="hero-slide-up text-base md:text-lg text-text-muted leading-relaxed max-w-lg mb-8 md:text-justify" style="animation-delay: 0.2s">
 				Desarrollo y mantenimiento de aplicaciones Mainframe en entornos bancarios. Garantizo la estabilidad, el rendimiento y la integridad de los sistemas que mueven el negocio.
 			</p>
 
@@ -48,7 +49,7 @@ const { name, title } = Astro.props;
 			</div>
 
 			<!-- Mini stats -->
-			<div class="hero-slide-up grid grid-cols-3 gap-6 max-w-md pt-8 border-t border-line" style="animation-delay: 0.5s">
+			<div class="hero-slide-up grid grid-cols-3 gap-4 sm:gap-6 max-w-md pt-8 border-t border-line" style="animation-delay: 0.5s">
 				<div>
 					<p class="text-2xl font-extrabold text-white">2.5+</p>
 					<p class="text-xs text-text-muted mt-1">años exp.</p>
@@ -71,8 +72,8 @@ const { name, title } = Astro.props;
 				<div class="absolute -top-6 -right-6 w-40 h-40 bg-primary/20 rounded-2xl rotate-6"></div>
 				<div class="absolute -bottom-6 -left-6 w-40 h-40 bg-accent/20 rounded-2xl -rotate-6"></div>
 				<!-- portrait -->
-				<div class="relative w-[300px] h-[447px] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-line">
-					<img src="/assets/profile-hero-full.jpg" alt={`Foto de ${name}`} class="w-full h-full object-cover" />
+				<div class="relative w-64 sm:w-72 lg:w-[300px] h-96 sm:h-[430px] lg:h-[447px] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-line">
+					<img src={`${base}assets/profile-hero-full.jpg`} alt={`Foto de ${name}`} class="w-full h-full object-cover" />
 				</div>
 				<!-- floating code-bracket badge -->
 				<div class="absolute -top-4 left-1/2 -translate-x-1/2 w-12 h-12 rounded-xl bg-primary flex items-center justify-center shadow-lg">

@@ -28,7 +28,14 @@
 /* Smooth scroll + section snap (each section anchors to viewport) */
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
+
+    /* Section snap only on desktop — avoid interfering with touch scroll on mobile */
+    @media (min-width: 768px) {
+      html {
+        scroll-snap-type: y proximity;
+      }
+    }
+
 }
 
 /* Reveal animation classes */
