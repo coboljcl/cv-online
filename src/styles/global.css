@@ -25,17 +25,19 @@
   --color-line: #2a3342;
 }
 
-/* Smooth scroll + section snap (each section anchors to viewport) */
+/* Smooth scroll (always) */
 html {
   scroll-behavior: smooth;
+}
 
-    /* Section snap only on desktop — avoid interfering with touch scroll on mobile */
-    @media (min-width: 768px) {
-      html {
-        scroll-snap-type: y proximity;
-      }
-    }
-
+/* Section snap only on desktop — avoid interfering with touch scroll on mobile */
+@media (min-width: 768px) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+  main section[id] {
+    scroll-snap-align: start;
+  }
 }
 
 /* Reveal animation classes */
@@ -141,12 +143,6 @@ html {
   transform: scale(1.1);
 }
 
-/* Pages sections: snap each section to the top, with breathing room */
-main section[id] {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
-  scroll-margin-top: 0;
-}
 
 /* Ripple click animation for nav items */
 .ripple {
