@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Avatar placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2a323f"/>
+      <stop offset="1" stop-color="#1a1f27"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9c3b0"/>
+      <stop offset="1" stop-color="#bfa692"/>
+    </linearGradient>
+    <clipPath id="circle"><circle cx="100" cy="100" r="100"/></clipPath>
+  </defs>
+  <g clip-path="url(#circle)">
+    <rect width="200" height="200" fill="url(#bg)"/>
+    <!-- subtle accent glow -->
+    <circle cx="100" cy="60" r="120" fill="#1f7ae0" opacity="0.12"/>
+    <!-- shoulders -->
+    <path d="M40 200 C40 165 62 148 100 148 C138 148 160 165 160 200 Z" fill="#3a4657"/>
+    <!-- neck -->
+    <rect x="92" y="128" width="16" height="24" rx="6" fill="#c4ab96"/>
+    <!-- head -->
+    <ellipse cx="100" cy="100" rx="34" ry="38" fill="url(#skin)"/>
+    <!-- hair -->
+    <path d="M66 100 C64 62 84 52 100 52 C116 52 136 62 134 100 C134 88 120 78 100 78 C80 78 66 88 66 100 Z" fill="#2c3038"/>
+    <path d="M66 100 C64 78 72 56 100 54 C96 54 68 66 66 100 Z" fill="#2c3038"/>
+  </g>
+</svg>
