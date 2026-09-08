@@ -26,22 +26,41 @@ const { name, title } = Astro.props;
 			</p>
 
 			<!-- CTA -->
-			<div class="hero-slide-up flex flex-wrap items-center gap-5 mb-10" style="animation-delay: 0.3s">
+			<div class="hero-slide-up flex flex-wrap items-center gap-4 mb-10" style="animation-delay: 0.3s">
 				<a href="#contacto" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white text-sm font-semibold uppercase tracking-wide px-7 py-3.5 rounded-lg transition-colors">
 					Contactar
 					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5l7 7-7 7" />
 					</svg>
 				</a>
+				<a href="#proyectos" class="inline-flex items-center gap-2 border-2 border-line hover:border-primary hover:text-primary text-white text-sm font-semibold uppercase tracking-wide px-7 py-3.5 rounded-lg transition-colors">
+					Ver proyectos
+				</a>
 			</div>
 
 			<!-- Featured technologies -->
-			<div class="hero-slide-up flex flex-wrap gap-3" style="animation-delay: 0.4s">
+			<div class="hero-slide-up flex flex-wrap gap-3 mb-12" style="animation-delay: 0.4s">
 				{["COBOL", "DB2", "CICS", "JCL", "Mainframe"].map((t) => (
 					<span class="skill-tag text-sm font-medium bg-nav text-text-muted hover:text-white hover:bg-primary px-4 py-2 rounded-lg border border-line cursor-default">
 						{t}
 					</span>
 				))}
+			</div>
+
+			<!-- Mini stats -->
+			<div class="hero-slide-up grid grid-cols-3 gap-6 max-w-md pt-8 border-t border-line" style="animation-delay: 0.5s">
+				<div>
+					<p class="text-2xl font-extrabold text-white">2.5+</p>
+					<p class="text-xs text-text-muted mt-1">años exp.</p>
+				</div>
+				<div>
+					<p class="text-2xl font-extrabold text-white">100+</p>
+					<p class="text-xs text-text-muted mt-1">programas</p>
+				</div>
+				<div>
+					<p class="text-2xl font-extrabold text-white">3</p>
+					<p class="text-xs text-text-muted mt-1">bancos</p>
+				</div>
 			</div>
 		</div>
 
