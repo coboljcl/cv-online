@@ -11,15 +11,15 @@ import Contact from '../components/Contact.astro';
 const name = "Allan Zúñiga";
 const title = "Programador COBOL";
 
-    const navItems = [
-    	{ label: "Inicio", href: "#inicio", icon: "inicio" },
-    	{ label: "Sobre mí", href: "#perfil", icon: "perfil" },
-    	{ label: "Experiencia", href: "#experiencia", icon: "experiencia" },
-    	{ label: "Tecnologías", href: "#tecnologias", icon: "tecnologias" },
-    	{ label: "Educación", href: "#educacion", icon: "educacion" },
-    	{ label: "Habilidades", href: "#habilidades", icon: "habilidades" },
-    	{ label: "Contacto", href: "#contacto", icon: "contacto" },
-    ];
+const navItems = [
+	{ label: "Inicio", href: "#inicio", icon: "inicio" },
+	{ label: "Sobre mí", href: "#perfil", icon: "perfil" },
+	{ label: "Experiencia", href: "#experiencia", icon: "experiencia" },
+	{ label: "Tecnologías", href: "#tecnologias", icon: "tecnologias" },
+	{ label: "Educación", href: "#educacion", icon: "educacion" },
+	{ label: "Habilidades", href: "#habilidades", icon: "habilidades" },
+	{ label: "Contacto", href: "#contacto", icon: "contacto" },
+];
 
 const profile = `Programador COBOL con más de 2 años y medio de experiencia en entornos Mainframe para el sector bancario, especializado en el desarrollo y mantenimiento de aplicaciones críticas. He participado en la implementación de más de 100 programas COBOL (batch y CICS online), principalmente en el área de inversión, carteras y fondos, trabajando con bases de datos DB2, procedimientos JCL y transiciones a producción. Mi enfoque combina el cumplimiento de especificaciones técnicas con pruebas unitarias y funcionales rigurosas antes de cada despliegue, junto con una documentación clara que facilita el mantenimiento posterior. Me considero una persona orientada a la solución, colaborativa y comprometida con la calidad del código.`;
 
@@ -91,24 +91,32 @@ const techStack = [
 
 const skillGroups = [
 	{
-		category: "Mainframe & COBOL",
-		skills: ["COBOL", "DB2", "CICS", "JCL", "ISPF", "COPYS", "CURSORES", "MÓDULOS", "FICHEROS SECUENCIALES", "HOST"],
+		category: "COBOL",
+		skills: ["Cursores (Open, Fetch, Close)", "Performs", "Occurs", "Llamadas a módulos", "COPYS", "Ficheros secuenciales", "Módulos/rutinas"],
+	},
+	{
+		category: "DB2",
+		skills: ["SQL (SELECT, INSERT, UPDATE)", "Cursores", "Manipulación de tablas", "Bases de datos en DEV"],
+	},
+	{
+		category: "JCL",
+		skills: ["Procesos BATCH", "Descarga de tablas", "Sorts", "Unión de ficheros", "Monitorización de jobs"],
+	},
+	{
+		category: "CICS",
+		skills: ["Transacciones online", "Programas online"],
+	},
+	{
+		category: "Mainframe",
+		skills: ["IBM Mainframe", "ISPF", "HOST"],
+	},
+	{
+		category: "Herramientas",
+		skills: ["VisualStudio", "UltraEdit", "JIRA", "REMEDY"],
 	},
 	{
 		category: "Web & Desarrollo",
 		skills: ["HTML", "CSS", "JavaScript"],
-	},
-	{
-		category: "Redes & Seguridad",
-		skills: ["Routers IP", "Voz-IP", "Puertos DLP", "Políticas de Seguridad", "ADSL", "FTTH", "DNS", "Firewall"],
-	},
-	{
-		category: "CCTV y Monitoreo",
-		skills: ["CCTV", "Cámaras IP", "Alarmas", "Monitoreo", "Grabaciones CCTV"],
-	},
-	{
-		category: "Herramientas",
-		skills: ["JIRA", "REMEDY", "UltraEdit", "VisualStudio"],
 	},
 	{
 		category: "Idiomas",

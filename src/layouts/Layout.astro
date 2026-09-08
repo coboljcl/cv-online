@@ -81,7 +81,7 @@ const navGlyphs: Record<string, string> = {
 									data-nav
 									class:list={[
 										'nav-item',
-										'group flex items-center gap-3 px-5 py-3 rounded-lg text-sm font-semibold uppercase tracking-wide transition-all duration-300',
+										'group flex items-center gap-3 px-5 py-3 rounded-lg text-sm font-semibold uppercase tracking-wide transition-all duration-300 overflow-hidden',
 										item.href === '#inicio' ? 'is-active' : '',
 									]}
 								>
@@ -129,8 +129,13 @@ const navGlyphs: Record<string, string> = {
 				<!-- Floating "next section" button: always visible, bounces, works in every section -->
 				<button id="scroll-indicator" type="button" class="fixed z-50 bottom-6 right-6 lg:right-8 flex items-center gap-2 group focus:outline-none cursor-pointer" aria-label="Ir a la siguiente sección">
 					<div class="w-11 h-11 rounded-full border-2 border-primary/50 group-hover:border-primary group-hover:bg-primary/15 transition-colors flex items-center justify-center animate-bounce">
-						<svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<!-- Flecha hacia abajo (se muestra salvo en la última sección) -->
+						<svg class="icon-next w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+						</svg>
+						<!-- Icono home (se muestra en la última sección) -->
+						<svg class="icon-home w-5 h-5 text-primary hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1V10" />
 						</svg>
 					</div>
 				</button>
@@ -149,6 +154,19 @@ const navGlyphs: Record<string, string> = {
 					const active = link.getAttribute('href') === `#${id}`;
 					link.classList.toggle('is-active', active);
 				});
+			};
+
+			// Toggle the scroll button icon: down-arrow everywhere, home at the last section
+			const scrollBtn = document.getElementById('scroll-indicator');
+			const updateButtonIcon = () => {
+				if (!scrollBtn) return;
+				const secs = getSections();
+				if (!secs.length) return;
+				const isLast = currentId === secs[secs.length - 1].id;
+				const nextIco = scrollBtn.querySelector('.icon-next');
+				const homeIco = scrollBtn.querySelector('.icon-home');
+				if (nextIco) nextIco.classList.toggle('hidden', isLast);
+				if (homeIco) homeIco.classList.toggle('hidden', !isLast);
 			};
 
 			const currentIndex = () => {
@@ -173,15 +191,27 @@ const navGlyphs: Record<string, string> = {
 					if (top <= marker) current = sec;
 				}
 				if (current && current.id !== currentId) setActive(current.id);
+				updateButtonIcon();
 			};
 			window.addEventListener('scroll', onScroll, { passive: true });
 			onScroll();
 
-			// Nav click → force active immediately
+			// Nav click → force active immediately + spawn ripple
 			navLinks.forEach((link) => {
 				link.addEventListener('click', (e) => {
 					const id = (link.getAttribute('href') || '').replace('#', '');
 					if (id) setActive(id);
+
+					// Ripple effect from the click point
+					const rect = link.getBoundingClientRect();
+					const size = Math.max(rect.width, rect.height);
+					const ripple = document.createElement('span');
+					ripple.className = 'ripple';
+					ripple.style.width = ripple.style.height = size + 'px';
+					ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+					ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+					link.appendChild(ripple);
+					ripple.addEventListener('animationend', () => ripple.remove());
 				});
 			});
 
@@ -195,6 +225,7 @@ const navGlyphs: Record<string, string> = {
 				const target = (idx === secs.length - 1) ? secs[0] : (secs[idx + 1] || secs[0]);
 				target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 				setActive(target.id);
+				updateButtonIcon();
 			});
 
 			// Reveal animations
