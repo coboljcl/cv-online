@@ -1,5 +1,11 @@
 ---
 import SectionHeading from './SectionHeading.astro';
+import type { SkillGroup } from '../types/cv';
+
+interface Props {
+	skillGroups: SkillGroup[];
+}
+
 const { skillGroups } = Astro.props;
 ---
 

@@ -1,11 +1,9 @@
 ---
 import SectionHeading from './SectionHeading.astro';
+import type { ProjectItem } from '../types/cv';
 
-interface Project {
-	title: string;
-	description: string;
-	tags: string[];
-	link?: string;
+interface Props {
+	projects: ProjectItem[];
 }
 
 const { projects } = Astro.props;
@@ -23,7 +21,7 @@ const { projects } = Astro.props;
 				>
 					<div class="flex items-start gap-4">
 						<div class="w-11 h-11 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center shrink-0">
-							<svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<svg class="w-5 h-5 text-primary" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h4l2 2h8a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
 							</svg>
 						</div>
@@ -45,9 +43,10 @@ const { projects } = Astro.props;
 									target="_blank"
 									rel="noopener noreferrer"
 									class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary mt-4 hover:underline"
+									aria-label={`Ver proyecto: ${project.title}`}
 								>
 									Ver proyecto
-									<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<svg class="w-3.5 h-3.5" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
 									</svg>
 								</a>

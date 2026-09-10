@@ -40,6 +40,18 @@ html {
   }
 }
 
+
+/* Consistent keyboard focus without changing hover/active design */
+:where(a, button, summary, input, textarea, select):focus-visible {
+  outline: 2px solid #1f7ae0;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(31, 122, 224, 0.2);
+}
+
+:where(input, textarea, select):focus-visible {
+  border-color: #1f7ae0;
+}
+
 /* Reveal animation classes */
 .reveal {
   opacity: 0;
@@ -158,5 +170,21 @@ html {
   to {
     transform: scale(1);
     opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

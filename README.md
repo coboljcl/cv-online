@@ -41,9 +41,11 @@ Sitio web personal y portafolio profesional desarrollado con **Astro** y **Tailw
 │   └── og-banner.png    # Banner para Open Graph / compartir
 ├── src/
 │   ├── components/      # Componentes de UI (Hero, Profile, Experience...)
+│   ├── data/            # Datos centralizados del CV
 │   ├── layouts/         # Layout.astro (estructura + sidebar + SEO)
-│   ├── pages/           # index.astro (datos del CV + composición)
-│   └── styles/          # global.css (tema, animaciones)
+│   ├── pages/           # index.astro (composición de la página)
+│   ├── styles/          # global.css (tema, animaciones)
+│   └── types/           # Tipos TypeScript del CV
 ├── astro.config.mjs     # Configuración de Astro (base, assets)
 └── package.json
 ```
@@ -58,18 +60,40 @@ Todos los comandos se ejecutan desde la raíz del proyecto:
 | :--- | :--- |
 | `npm install` | Instala las dependencias |
 | `npm run dev` | Arranca el servidor de desarrollo en `localhost:4321` |
+| `npm run check` | Ejecuta `astro check` para validar Astro y TypeScript |
 | `npm run build` | Compila el sitio de producción en `./dist/` |
+| `npm run verify` | Ejecuta `npm run check && npm run build` |
 | `npm run preview` | Previsualiza el build de producción |
+
+---
+
+## ✅ Verificación
+
+Antes de publicar cambios, ejecuta:
+
+```bash
+npm run verify
+```
+
+Este comando valida el proyecto con `astro check` y genera el build de producción.
 
 ---
 
 ## 🌍 Despliegue en GitHub Pages
 
-El sitio se publica desde la rama `gh-pages` con el contenido compilado de `dist/`. Para actualizar la web:
+Actualmente el sitio se publica desde GitHub Pages con el flujo del repositorio. Antes de publicar cambios, valida el proyecto:
 
-1. Ejecuta `npm run build`.
-2. Copia el contenido de `dist/` a la rama `gh-pages`.
-3. Empuja la rama a `origin gh-pages`.
+```bash
+npm run verify
+```
+
+Luego genera el build de producción:
+
+```bash
+npm run build
+```
+
+La automatización con GitHub Actions queda como mejora pendiente porque GitHub exige permisos especiales para subir archivos en `.github/workflows/`.
 
 > ⚠️ **Importante:** la carpeta de assets del build está configurada como `astro/` (no `_astro/`) porque GitHub Pages no sirve carpetas que empiezan por subrayado. Ver `astro.config.mjs`.
 

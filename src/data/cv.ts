@@ -1,0 +1,124 @@
+import type { CvData } from '../types/cv';
+
+export const cv: CvData = {
+	name: "Allan Zúñiga",
+	title: "Programador COBOL",
+	navItems: [
+		{ label: "Inicio", href: "#inicio", icon: "inicio" },
+		{ label: "Sobre mí", href: "#perfil", icon: "perfil" },
+		{ label: "Experiencia", href: "#experiencia", icon: "experiencia" },
+		{ label: "Proyectos", href: "#proyectos", icon: "tecnologias" },
+		{ label: "Tecnologías", href: "#tecnologias", icon: "tecnologias" },
+		{ label: "Educación", href: "#educacion", icon: "educacion" },
+		{ label: "Habilidades", href: "#habilidades", icon: "habilidades" },
+		{ label: "Contacto", href: "#contacto", icon: "contacto" },
+	],
+	profile: `Programador COBOL con más de 2 años y medio de experiencia en entornos Mainframe para el sector bancario, especializado en el desarrollo y mantenimiento de aplicaciones críticas. He participado en la implementación de más de 100 programas COBOL (batch y CICS online), principalmente en el área de inversión, carteras y fondos, trabajando con bases de datos DB2, procedimientos JCL y transiciones a producción. Mi enfoque combina el cumplimiento de especificaciones técnicas con pruebas unitarias y funcionales rigurosas antes de cada despliegue, junto con una documentación clara que facilita el mantenimiento posterior. Me considero una persona orientada a la solución, colaborativa y comprometida con la calidad del código.`,
+	experience: [
+		{
+			company: "CCYPHER (CLIENTE: BANKINTER)",
+			position: "Programador COBOL Junior",
+			tagline: "Área de Inversión · Carteras y Fondos",
+			duration: "9 meses",
+			tech: "COBOL, DB2, JCL, CICS, IBM Mainframe, UltraEdit, REMEDY, JIRA, VisualStudio",
+			highlights: [
+				"Participé en la implementación de más de 100 programas COBOL batch y transacciones CICS online para el área de inversión, carteras y fondos.",
+				"Codifiqué y ajusté rutinas, COPYS y sentencias SQL (SELECT, INSERT, UPDATE) para alinear el flujo de los programas con la lógica de negocio.",
+				"Desarrollé y monitoricé procedimientos JCL para la ejecución de procesos batch en mainframe.",
+				"Ejecuté pruebas unitarias y funcionales de cada elemento modificado antes de su pase a PRE, minimizando incidencias en entornos superiores.",
+				"Utilicé el depurador de Visual Studio Code para localizar y corregir errores en programas.",
+				"Elaboré documentación técnica detallada de las modificaciones para facilitar el mantenimiento.",
+			],
+		},
+		{
+			company: "LUCATIC (CLIENTE: MORABANC)",
+			position: "Programador COBOL Junior",
+			tagline: "Mantenimiento evolutivo y correctivo",
+			duration: "7 meses",
+			tech: "COBOL, DB2, JCL, CICS, IBM Mainframe, UltraEdit, REMEDY, JIRA, VisualStudio",
+			highlights: [
+				"Implementé mejoras evolutivas y correcciones sobre programas COBOL del entorno bancario, siguiendo especificaciones técnicas.",
+				"Trabajé con tablas DB2 en entorno DEV, creando y actualizando registros para garantizar la coherencia del ciclo de ejecución.",
+				"Analicé programas modificados y ejecuté pruebas unitarias para asegurar la integridad de los datos.",
+				"Apliqué y reutilicé COPYS para mantener la consistencia de las estructuras de datos entre programas de un mismo módulo.",
+				"Monitoricé procesos batch y documenté los cambios realizados.",
+			],
+		},
+		{
+			company: "COMPUTER SPACE (CLIENTE: DEUTSCHE BANK)",
+			position: "Programador COBOL Junior",
+			tagline: "Soporte y evolución de sistemas",
+			duration: "10 meses",
+			tech: "COBOL, DB2, JCL, CICS, IBM Mainframe, UltraEdit, REMEDY, JIRA, VisualStudio",
+			highlights: [
+				"Di soporte y evolución a aplicaciones COBOL del entorno bancario, implementando modificaciones según las necesidades del cliente.",
+				"Codifiqué programas, rutinas y JCL, y ejecuté pruebas funcionales antes del despliegue.",
+				"Trabajé con estructuras COBOL (Occurs, Performs, cursores OPEN/FETCH/CLOSE) y lectura de ficheros secuenciales.",
+				"Ejecuté JCLs de descarga de tablas, sorts y unión de ficheros para los procesos batch.",
+				"Actualicé registros DB2 y validé el comportamiento de los programas frente a los datos de prueba.",
+			],
+		},
+	],
+	education: [
+		{
+			degree: "FP2 Grado Superior Desarrollo Aplicaciones Web",
+			institution: "Instituto e Innovación Profesional",
+		},
+		{
+			degree: "FP1 Grado Medio Sistemas Informáticos y Redes",
+			institution: "IES Liceo Sorolla B",
+		},
+	],
+	techStack: [
+		{ name: "COBOL", level: 85 },
+		{ name: "DB2", level: 80 },
+		{ name: "JCL", level: 78 },
+		{ name: "CICS", level: 75 },
+		{ name: "SQL", level: 70 },
+		{ name: "Mainframe", level: 80 },
+	],
+	skillGroups: [
+		{
+			category: "COBOL",
+			skills: ["Cursores (Open, Fetch, Close)", "Performs", "Occurs", "Llamadas a módulos", "COPYS", "Ficheros secuenciales", "Módulos/rutinas"],
+		},
+		{
+			category: "DB2",
+			skills: ["SQL (SELECT, INSERT, UPDATE)", "Cursores", "Manipulación de tablas", "Bases de datos en DEV"],
+		},
+		{
+			category: "JCL",
+			skills: ["Procesos BATCH", "Descarga de tablas", "Sorts", "Unión de ficheros", "Monitorización de jobs"],
+		},
+		{
+			category: "CICS",
+			skills: ["Transacciones online", "Programas online"],
+		},
+		{
+			category: "Mainframe",
+			skills: ["IBM Mainframe", "ISPF", "HOST"],
+		},
+		{
+			category: "Herramientas",
+			skills: ["VisualStudio", "UltraEdit", "JIRA", "REMEDY"],
+		},
+		{
+			category: "Web & Desarrollo",
+			skills: ["HTML", "CSS", "JavaScript", "Vibe coding con IA", "Agentes IA", "Subagentes", "LLMs", "Skills", "Agentes de consola", "Deploy online", "Arquitectura", "Seguridad"],
+		},
+		{
+			category: "Idiomas",
+			skills: ["Inglés B2"],
+		},
+	],
+	projects: [
+		{
+			title: "CV Online — Portafolio profesional",
+			description: "Sitio web personal desarrollado con Astro y Tailwind, combinando programación clásica (COBOL) con desarrollo asistido por IA (vibe coding): agentes, subagentes, LLMs y skills para orquestar todo el proyecto, desde el diseño hasta el despliegue.",
+			tags: ["Astro", "Tailwind", "Vibe coding", "Agentes IA", "Git", "Deploy"],
+			link: "https://github.com/coboljcl",
+		},
+	],
+};
+
+export const { name, title, navItems, profile, experience, education, techStack, skillGroups, projects } = cv;

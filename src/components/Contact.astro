@@ -96,12 +96,12 @@ const ACCESS_KEY = "ee7a6d75-71c7-4d40-9749-747768cee065";
 </section>
 
 <script>
-	const form = document.getElementById("contact-form");
+	const form = document.getElementById("contact-form") as HTMLFormElement | null;
 	if (form) {
 		form.addEventListener("submit", async (e) => {
 			e.preventDefault();
 			const status = document.getElementById("form-status");
-			const button = form.querySelector("button[type='submit']");
+			const button = form.querySelector<HTMLButtonElement>("button[type='submit']");
 			const endpoint = form.dataset.endpoint;
 
 			if (!endpoint || endpoint === "@") {
@@ -109,6 +109,7 @@ const ACCESS_KEY = "ee7a6d75-71c7-4d40-9749-747768cee065";
 				return;
 			}
 
+			if (!button) return;
 			button.disabled = true;
 			if (status) status.textContent = "Enviando...";
 
