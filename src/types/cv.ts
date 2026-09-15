@@ -4,6 +4,34 @@ export interface NavItem {
 	icon?: string;
 }
 
+export interface ProfileClient {
+	name: string;
+	intermediaries: string[];
+	description: string;
+}
+
+export interface ProfileMetric {
+	value: string;
+	label: string;
+	context: string;
+	description: string;
+	icon: "calendar" | "code" | "bank" | "mainframe";
+}
+
+export interface ProfileQualityStep {
+	label: string;
+	description: string;
+}
+
+export interface Profile {
+	eyebrow: string;
+	headline: string;
+	summary: string[];
+	clients: ProfileClient[];
+	metrics: ProfileMetric[];
+	qualityCycle: ProfileQualityStep[];
+}
+
 export interface ExperienceItem {
 	company: string;
 	position: string;
@@ -39,7 +67,7 @@ export interface CvData {
 	name: string;
 	title: string;
 	navItems: NavItem[];
-	profile: string;
+	profile: Profile;
 	experience: ExperienceItem[];
 	education: EducationItem[];
 	techStack: TechStackItem[];

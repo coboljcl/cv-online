@@ -7,28 +7,31 @@ interface Props {
 }
 
 const { skillGroups } = Astro.props;
+const technologySkills = new Set(["HTML", "CSS", "JavaScript"]);
+const complementarySkills = [...new Set(
+	skillGroups
+		.filter((group) => group.category === "Web & Desarrollo" || group.category === "Idiomas")
+		.flatMap((group) => group.skills.filter((skill) => !technologySkills.has(skill))),
+)];
 ---
 
 <section id="habilidades" class="py-20 lg:py-24 px-8 lg:px-16 bg-surface">
 	<div class="max-w-6xl mx-auto">
-		<SectionHeading label="Competencias" title="Habilidades" icon="habilidades" />
+		<SectionHeading label="Complementos" title="Práctica y perfil" icon="habilidades" />
+		<p class="skills-intro reveal">Prácticas complementarias al stack técnico e idioma de trabajo.</p>
 
-		<div class="grid md:grid-cols-2 gap-6">
-			{skillGroups.map((group, i) => (
-				<div
-					class="reveal bg-surface-alt rounded-xl p-6 md:p-8 border border-line"
-					class:list={{ 'reveal-delay-1': i === 1, 'reveal-delay-2': i >= 2 }}
-				>
-					<h3 class="text-xs uppercase tracking-wider font-bold text-primary mb-4">{group.category}</h3>
+		{complementarySkills.length > 0 && (
+			<div class="skills-grid">
+				<div class="reveal skill-group-card bg-surface-alt rounded-xl p-6 md:p-8 border border-line">
 					<div class="flex flex-wrap gap-2.5">
-						{group.skills.map((skill) => (
+						{complementarySkills.map((skill) => (
 							<span class="skill-tag text-sm font-medium bg-nav text-text-muted hover:text-white hover:bg-primary px-4 py-2 rounded-lg border border-line cursor-default">
 								{skill}
 							</span>
 						))}
 					</div>
 				</div>
-			))}
-		</div>
+			</div>
+		)}
 	</div>
 </section>

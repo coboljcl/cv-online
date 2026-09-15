@@ -13,48 +13,53 @@ const { projects } = Astro.props;
 	<div class="max-w-6xl mx-auto">
 		<SectionHeading label="Proyectos destacados" title="Lo que he construido" icon="tecnologias" />
 
-		<div class="grid md:grid-cols-2 gap-6">
+		<div class="grid gap-6">
 			{projects.map((project, i) => (
-				<div
-					class="reveal bg-surface-alt rounded-xl p-6 md:p-8 border border-line hover:border-primary/40 transition-colors"
-					class:list={{ 'reveal-delay-1': i % 2 === 1 }}
-				>
-					<div class="flex items-start gap-4">
-						<div class="w-11 h-11 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center shrink-0">
-							<svg class="w-5 h-5 text-primary" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h4l2 2h8a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+				<article class="project-feature reveal" class:list={{ 'reveal-delay-1': i > 0 }}>
+					<div class="project-feature-copy">
+						<div class="project-feature-kicker">
+							<svg aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v11.494m-9-5.747h18" />
 							</svg>
+							<span>Proyecto destacado</span>
 						</div>
-						<div class="flex-1">
-							<h3 class="text-lg font-bold text-white">{project.title}</h3>
-							<p class="text-text-muted text-sm leading-relaxed mt-1">
-								{project.description}
-							</p>
-							<div class="flex flex-wrap gap-2 mt-4">
-								{project.tags.map((tag) => (
-									<span class="skill-tag text-xs font-medium bg-nav text-text-muted px-3 py-1 rounded-full border border-line">
-										{tag}
-									</span>
-								))}
-							</div>
-							{project.link && (
-								<a
-									href={project.link}
-									target="_blank"
-									rel="noopener noreferrer"
-									class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary mt-4 hover:underline"
-									aria-label={`Ver proyecto: ${project.title}`}
-								>
-									Ver proyecto
-									<svg class="w-3.5 h-3.5" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-									</svg>
-								</a>
-							)}
-						</div>
+						<h3>{project.title}</h3>
+						<p>{project.description}</p>
+						<ul class="project-feature-tags" aria-label={`Tecnologías de ${project.title}`}>
+							{project.tags.map((tag) => <li>{tag}</li>)}
+						</ul>
 					</div>
-				</div>
+
+					<div class="project-feature-action">
+						<div class="project-feature-status">
+							<span aria-hidden="true">&gt;</span>
+							<span>PROJECT_OVERVIEW</span>
+						</div>
+						<p>Conocé el perfil en GitHub y los detalles de este proyecto.</p>
+						{project.link && (
+							<a href={project.link} target="_blank" rel="noopener noreferrer" aria-label="Ver perfil en GitHub">
+								Ver perfil en GitHub
+								<svg aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10" />
+								</svg>
+							</a>
+						)}
+					</div>
+				</article>
 			))}
+		</div>
+
+		<div class="reveal mt-8 flex flex-col items-start justify-between gap-4 rounded-xl border border-line bg-surface p-5 sm:flex-row sm:items-center">
+			<div>
+				<p class="font-semibold text-white">¿Querés conversar sobre un proyecto?</p>
+				<p class="mt-1 text-sm text-text-muted">Ponete en contacto para hablar de oportunidades o colaboraciones.</p>
+			</div>
+			<a href="#contacto" class="inline-flex shrink-0 items-center gap-2 rounded-lg border border-primary/50 px-4 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white">
+				Contactar
+				<svg class="h-4 w-4" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5l7 7-7 7" />
+				</svg>
+			</a>
 		</div>
 	</div>
 </section>

@@ -1,54 +1,96 @@
 ---
 import SectionHeading from './SectionHeading.astro';
+import type { Profile as ProfileData, ProfileMetric } from '../types/cv';
+
+interface Props {
+	profile: ProfileData;
+}
+
 const { profile } = Astro.props;
+
+const metricIcons: Record<ProfileMetric['icon'], string> = {
+	calendar: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
+	code: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
+	bank: "M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3",
+	mainframe: "M5 5h14v14H5zM9 9h6v2H9zm0 4h6v2H9z",
+};
 ---
 
 <section id="perfil" class="py-20 lg:py-24 px-8 lg:px-16 bg-surface">
 	<div class="max-w-6xl mx-auto">
 		<SectionHeading label="Sobre mí" title="Perfil Profesional" icon="perfil" />
 
-		<div class="reveal reveal-delay-1 bg-surface-alt rounded-2xl p-8 md:p-12 border border-line">
-			<p class="text-lg md:text-xl text-text leading-relaxed font-light md:text-justify">{profile}</p>
-
-			<!-- Cifras destacadas -->
-			<div class="grid grid-cols-2 sm:grid-cols-4 gap-8 mt-10 pt-10 border-t border-line">
-				<div class="flex flex-col items-center text-center">
-					<div class="w-11 h-11 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center mb-3">
-						<svg class="w-5 h-5 text-primary" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-						</svg>
-					</div>
-					<p class="text-3xl font-extrabold text-white">2.5+</p>
-					<p class="text-xs text-text-muted mt-1 uppercase tracking-wider">años de experiencia</p>
+		<section class="profile-client-proof reveal reveal-delay-1" aria-labelledby="profile-client-heading">
+			<div class="profile-client-heading">
+				<div class="profile-client-trust-icon" aria-hidden="true">
+					<svg focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3zm-3 9 2 2 4-4" />
+					</svg>
 				</div>
-				<div class="flex flex-col items-center text-center">
-					<div class="w-11 h-11 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center mb-3">
-						<svg class="w-5 h-5 text-primary" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-						</svg>
-					</div>
-					<p class="text-3xl font-extrabold text-white">100+</p>
-					<p class="text-xs text-text-muted mt-1 uppercase tracking-wider">programas implementados</p>
-				</div>
-				<div class="flex flex-col items-center text-center">
-					<div class="w-11 h-11 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center mb-3">
-						<svg class="w-5 h-5 text-primary" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3" />
-						</svg>
-					</div>
-					<p class="text-3xl font-extrabold text-white">3</p>
-					<p class="text-xs text-text-muted mt-1 uppercase tracking-wider">entidades bancarias</p>
-				</div>
-				<div class="flex flex-col items-center text-center">
-					<div class="w-11 h-11 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center mb-3">
-						<svg class="w-5 h-5 text-primary" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9z" />
-						</svg>
-					</div>
-					<p class="text-3xl font-extrabold text-white">COBOL</p>
-					<p class="text-xs text-text-muted mt-1 uppercase tracking-wider">stack principal</p>
+				<div>
+					<h3 id="profile-client-heading"><span>Confianza en entornos</span><span>financieros críticos</span></h3>
+					<p class="profile-client-subtitle">Experiencia en desarrollo y mantenimiento de aplicaciones bancarias.</p>
 				</div>
 			</div>
+			<ul class="profile-client-list" role="list">
+				{profile.clients.map((client) => (
+					<li class="profile-client">
+						<div class="profile-client-header">
+							<h4 class="profile-client-name">{client.name}</h4>
+							<ul class="profile-client-intermediaries" aria-label={`Intermediarios de ${client.name}`}>
+								{client.intermediaries.map((intermediary) => (
+									<li class="profile-client-intermediary">{intermediary}</li>
+								))}
+							</ul>
+						</div>
+						<p class="profile-client-description">{client.description}</p>
+					</li>
+				))}
+			</ul>
+		</section>
+
+		<dl class="profile-metrics reveal reveal-delay-2" aria-label="Métricas profesionales">
+			{profile.metrics.map((metric) => (
+				<div class="profile-metric">
+					<dt class="profile-metric-label">{metric.label}</dt>
+					<dd class="profile-metric-details">
+						<div class="profile-metric-icon" aria-hidden="true">
+							<svg focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={metricIcons[metric.icon]} />
+							</svg>
+						</div>
+						<span class="profile-metric-context">{metric.context}</span>
+						<span class="profile-metric-value">{metric.value}</span>
+						<p class="profile-metric-description">{metric.description}</p>
+					</dd>
+				</div>
+			))}
+		</dl>
+
+		<div class="profile-layout reveal reveal-delay-3">
+			<article class="profile-editorial">
+				<p class="profile-editorial-eyebrow">{profile.eyebrow}</p>
+				<h3 class="profile-editorial-title">{profile.headline}</h3>
+				<div class="profile-editorial-summary">
+					{profile.summary.map((paragraph) => <p>{paragraph}</p>)}
+				</div>
+			</article>
+
+			<aside class="profile-quality-panel" aria-labelledby="profile-quality-heading">
+				<p class="profile-proof-label">Ciclo de calidad</p>
+				<h3 id="profile-quality-heading" class="profile-quality-title">Del análisis a la trazabilidad</h3>
+				<ol class="profile-quality-list">
+					{profile.qualityCycle.map((step, index) => (
+						<li class="profile-quality-step">
+							<span class="profile-quality-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+							<div>
+								<h4>{step.label}</h4>
+								<p>{step.description}</p>
+							</div>
+						</li>
+					))}
+				</ol>
+			</aside>
 		</div>
 	</div>
 </section>

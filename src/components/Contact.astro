@@ -8,90 +8,63 @@ const FORM_ENDPOINT = "https://api.web3forms.com/submit";
 const ACCESS_KEY = "ee7a6d75-71c7-4d40-9749-747768cee065";
 ---
 <section id="contacto" class="py-20 lg:py-24 px-8 lg:px-16 bg-bg">
-	<div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
-		<!-- ===== Izquierda: introducción ===== -->
-		<div class="reveal">
-			<SectionHeading label="Contacto" title="¿Trabajamos juntos?" icon="contacto" />
-			<p class="text-text-muted leading-relaxed max-w-md mb-8 md:text-justify">
-				Cuéntame tu proyecto. Estoy abierto a oportunidades laborales y colaboraciones en el ámbito del desarrollo de sistemas y mantenimiento de aplicaciones.
-			</p>
+	<div class="max-w-6xl mx-auto">
+		<div class="contact-panel">
+			<div class="contact-intro reveal">
+				<SectionHeading label="Contacto" title="¿Trabajamos juntos?" icon="contacto" />
+				<div class="contact-availability">
+					<span class="status-dot" aria-hidden="true"></span>
+					<span>Disponible para nuevas oportunidades</span>
+				</div>
+				<p class="contact-intro-copy">
+					Estoy abierto a oportunidades laborales y colaboraciones en desarrollo de sistemas y mantenimiento de aplicaciones.
+				</p>
 
-			<p class="font-semibold text-primary text-lg mb-6">Disponible para nuevas oportunidades</p>
-
-			<!-- Social -->
-			<div class="flex flex-wrap gap-6">
-				<a href="https://www.linkedin.com/in/allan-z%C3%BA%C3%B1iga-359957181" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-primary font-medium transition-colors">LinkedIn</a>
-				<a href="https://github.com/coboljcl" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-primary font-medium transition-colors">GitHub</a>
+				<div class="contact-socials" aria-label="Perfiles profesionales">
+					<a href="https://www.linkedin.com/in/allan-z%C3%BA%C3%B1iga-359957181" target="_blank" rel="noopener noreferrer">
+						<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M20 20h-4v-6a2 2 0 00-4 0v6H8V10h4v1.5A3.5 3.5 0 0119.5 12v8zM4 8h4v12H4zM6 4a2 2 0 110 4 2 2 0 010-4z" /></svg>
+						LinkedIn
+					</a>
+					<a href="https://github.com/coboljcl" target="_blank" rel="noopener noreferrer">
+						<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.58 9.58 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 3.16 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z" /></svg>
+						GitHub
+					</a>
+				</div>
 			</div>
+
+			<form id="contact-form" data-endpoint={FORM_ENDPOINT} class="contact-form reveal reveal-delay-1">
+				<input type="hidden" name="access_key" value={ACCESS_KEY} />
+				<div class="contact-form-grid">
+					<div>
+						<label for="name">Nombre completo *</label>
+						<input id="name" name="name" type="text" autocomplete="name" required placeholder="Ej: Carlos Gómez" />
+					</div>
+					<div>
+						<label for="email">Correo electrónico *</label>
+						<input id="email" name="email" type="email" autocomplete="email" required placeholder="carlos@empresa.com" />
+					</div>
+				</div>
+				<div>
+					<label for="subject">Asunto o proyecto *</label>
+					<input id="subject" name="subject" type="text" required placeholder="Motivo de contacto" />
+				</div>
+				<div>
+					<label for="message">Mensaje *</label>
+					<textarea id="message" name="message" rows="5" required placeholder="Contame brevemente sobre la oportunidad o colaboración."></textarea>
+				</div>
+
+				<div class="h-captcha" data-captcha="true"></div>
+
+				<div>
+					<button type="submit" aria-describedby="form-guidance">
+						Enviar mensaje
+						<svg aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6l6 6-6 6" /></svg>
+					</button>
+					<p id="form-guidance">Tus datos se usan únicamente para responder a tu consulta.</p>
+					<p id="form-status" role="status" aria-live="polite"></p>
+				</div>
+			</form>
 		</div>
-
-		<!-- ===== Derecha: formulario ===== -->
-		<form id="contact-form" data-endpoint={FORM_ENDPOINT} class="reveal reveal-delay-1 grid grid-cols-1 sm:grid-cols-2 gap-6">
-			<input type="hidden" name="access_key" value={ACCESS_KEY} />
-			<div class="flex flex-col gap-2.5">
-				<label for="name" class="text-sm font-semibold text-white">Tu nombre</label>
-				<input
-					id="name"
-					name="name"
-					type="text"
-					required
-					placeholder="Nombre y apellidos"
-					class="bg-nav border border-line rounded-lg px-4 py-3 text-text placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 transition-colors"
-				/>
-			</div>
-
-			<div class="flex flex-col gap-2.5">
-				<label for="email" class="text-sm font-semibold text-white">Tu correo</label>
-				<input
-					id="email"
-					name="email"
-					type="email"
-					required
-					placeholder="tu@correo.com"
-					class="bg-nav border border-line rounded-lg px-4 py-3 text-text placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 transition-colors"
-				/>
-			</div>
-
-			<div class="flex flex-col gap-2.5 sm:col-span-2">
-				<label for="subject" class="text-sm font-semibold text-white">Asunto</label>
-				<input
-					id="subject"
-					name="subject"
-					type="text"
-					required
-					placeholder="Motivo de contacto"
-					class="bg-nav border border-line rounded-lg px-4 py-3 text-text placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 transition-colors"
-				/>
-			</div>
-
-			<div class="flex flex-col gap-2.5 sm:col-span-2">
-				<label for="message" class="text-sm font-semibold text-white">Mensaje</label>
-				<textarea
-					id="message"
-					name="message"
-					rows="5"
-					required
-					placeholder="Escribe tu mensaje aquí..."
-					class="bg-nav border border-line rounded-lg px-4 py-3 text-text placeholder:text-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 transition-colors resize-y"
-				></textarea>
-			</div>
-
-			<div class="h-captcha" data-captcha="true"></div>
-
-			<div class="sm:col-span-2">
-				<button
-					type="submit"
-					class="w-full sm:w-auto inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white text-sm font-semibold uppercase tracking-wide px-8 py-3.5 rounded-lg transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-				>
-					Enviar mensaje
-				</button>
-				<p id="form-status" class="mt-4 text-sm text-text-muted" role="status" aria-live="polite"></p>
-			</div>
-		</form>
-	</div>
-
-	<div class="reveal mt-20 pt-8 border-t border-line text-center">
-		<p class="text-text-muted/50 text-sm">&copy; {new Date().getFullYear()} Allan Zúñiga &mdash; Programador COBOL</p>
 	</div>
 </section>
 
