@@ -54,6 +54,7 @@ const navItemsWithGlyphs = navItems.map((item) => ({ ...item, glyph: item.icon ?
 		<meta property="og:title" content={`${name} | ${title}`} />
 		<meta property="og:description" content={`${title} especializado en COBOL y Mainframe para el sector bancario. 100+ programas implementados, más de 3 años de experiencia.`} />
 		<meta property="og:image" content={socialImageUrl} />
+		<meta property="og:image:alt" content={`Retrato profesional de ${name}, ${title}`} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta property="og:url" content={canonicalUrl} />
@@ -63,9 +64,7 @@ const navItemsWithGlyphs = navItems.map((item) => ({ ...item, glyph: item.icon ?
 		<meta name="twitter:title" content={`${name} | ${title}`} />
 		<meta name="twitter:description" content={`${title} especializado en COBOL y Mainframe para el sector bancario.`} />
 		<meta name="twitter:image" content={socialImageUrl} />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+		<meta name="twitter:image:alt" content={`Retrato profesional de ${name}, ${title}`} />
 		<link rel="canonical" href={canonicalUrl} />
 		<title>{name} | {title} · Mainframe</title>
 	</head>
@@ -83,7 +82,7 @@ const navItemsWithGlyphs = navItems.map((item) => ({ ...item, glyph: item.icon ?
 				</a>
 				<div class="nav-links" role="list">
 					{navItemsWithGlyphs.map((item) => (
-						<a href={item.href} data-nav aria-current={item.href === '#inicio' ? 'page' : undefined} class:list={['nav-item', item.href === '#inicio' ? 'is-active' : '']}>
+						<a href={item.href} data-nav aria-label={item.label} aria-current={item.href === '#inicio' ? 'page' : undefined} class:list={['nav-item', item.href === '#inicio' ? 'is-active' : '']}>
 							{item.glyph && <svg aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.glyph} /></svg>}
 							<span>{item.label}</span>
 						</a>
@@ -189,8 +188,15 @@ const navItemsWithGlyphs = navItems.map((item) => ({ ...item, glyph: item.icon ?
 				setActive(target.id);
 				updateButtonIcon();
 			});
-			const revealObserver = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add('visible'); }), { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-			document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
+			if ('IntersectionObserver' in window) {
+				document.documentElement.classList.add('reveal-enabled');
+				const revealObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
+					if (!entry.isIntersecting) return;
+					entry.target.classList.add('visible');
+					revealObserver.unobserve(entry.target);
+				}), { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+				document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
+			}
 		</script>
 	</body>
 </html>
