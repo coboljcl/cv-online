@@ -30,3 +30,17 @@ pnpm-debug.log*
 
 # temp deploy worktree
 .gh-pages-tmp/
+
+# local agent runtime state (not part of the site)
+/.codegraph/
+/.engram/
+/.pi/
+
+# organic-driven-development task logs
+/odd/
+
+# SDD/OpenSpec working artifacts
+/openspec/
+
+# local design reference material (screenshots, mockups)
+/referencias/
