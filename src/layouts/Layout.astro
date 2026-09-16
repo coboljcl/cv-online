@@ -73,7 +73,10 @@ const navItemsWithGlyphs = navItems.map((item) => ({ ...item, glyph: item.icon ?
 			<nav id="site-navigation" class="floating-nav" aria-label="Navegación principal">
 				<a class="nav-brand" href="#inicio" aria-label={`Ir al inicio de ${name}`}>
 					<span class="nav-avatar">
-						<img src={`${base}assets/profile-avatar.jpg`} alt={`Foto de ${name}`} width="560" height="560" loading="eager" decoding="async" />
+						<picture>
+							<source src={`${base}assets/profile-avatar.webp`} type="image/webp" />
+							<img src={`${base}assets/profile-avatar.jpg`} alt={`Foto de ${name}`} width="112" height="112" loading="eager" decoding="async" />
+						</picture>
 					</span>
 					<span class="nav-identity">
 						<strong>{name}</strong>

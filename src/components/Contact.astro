@@ -109,4 +109,30 @@ const ACCESS_KEY = "ee7a6d75-71c7-4d40-9749-747768cee065";
 	}
 </script>
 
-<script is:inline src="https://web3forms.com/client/script.js" async defer></script>
+<script>
+	const loadCaptchaProvider = () => {
+		if (document.getElementById("web3forms-client-script")) return;
+		const script = document.createElement("script");
+		script.id = "web3forms-client-script";
+		script.src = "https://web3forms.com/client/script.js";
+		script.async = true;
+		script.defer = true;
+		document.head.appendChild(script);
+	};
+
+	const contactSection = document.getElementById("contacto");
+	const contactForm = document.getElementById("contact-form");
+	if (contactSection && "IntersectionObserver" in window) {
+		const captchaObserver = new IntersectionObserver((entries) => {
+			if (!entries.some((entry) => entry.isIntersecting)) return;
+			loadCaptchaProvider();
+			captchaObserver.disconnect();
+		}, { rootMargin: "300px" });
+		captchaObserver.observe(contactSection);
+	} else {
+		loadCaptchaProvider();
+	}
+
+	contactForm?.addEventListener("focusin", loadCaptchaProvider, { once: true });
+	contactForm?.addEventListener("pointerenter", loadCaptchaProvider, { once: true });
+</script>
