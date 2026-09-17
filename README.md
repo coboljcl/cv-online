@@ -2,7 +2,7 @@
 
 > **Programador COBOL · Mainframe · Sector bancario**
 
-Sitio web personal y portafolio profesional desarrollado con **Astro** y **Tailwind CSS**, publicado como sitio estático en **GitHub Pages**. Combina el desarrollo clásico de sistemas (**COBOL**, **DB2**, **JCL**, **CICS**) con el desarrollo asistido por IA (*vibe coding*) usando agentes, subagentes y skills para orquestar todo el proyecto.
+Sitio web personal y portafolio profesional desarrollado con **Astro** y **Tailwind CSS**, publicado como sitio estático en **GitHub Pages**. Combina el desarrollo clásico de sistemas (**COBOL**, **DB2**, **JCL**, **CICS**) con el desarrollo asistido por IA (_vibe coding_) usando agentes, subagentes y skills para orquestar todo el proyecto.
 
 🔗 **Web en producción:** https://coboljcl.github.io/cv-online/
 
@@ -12,7 +12,7 @@ Sitio web personal y portafolio profesional desarrollado con **Astro** y **Tailw
 
 - 🎨 **Tema oscuro** con acentos azul y naranja, coherente con la identidad de sistemas/mainframe.
 - 📱 **Responsive**: barra lateral con menú hamburguesa en móvil y sidebar fija en escritorio.
-- 🧭 **Navegación con scroll-spy** que resalta la sección activa, con animación de onda (*ripple*) al hacer clic.
+- 🧭 **Navegación con scroll-spy** que resalta la sección activa, con animación de onda (_ripple_) al hacer clic.
 - 🖱️ **Botón flotante de scroll** que avanza sección a sección y cambia a icono de inicio al llegar al final.
 - 📄 **Secciones**: Hero, Perfil, Experiencia (acordeón), Proyectos, Tecnologías, Educación, Habilidades y Contacto.
 - 💬 **Formulario de contacto** conectado a **Web3Forms** (sin backend, sin exponer datos personales).
@@ -23,12 +23,12 @@ Sitio web personal y portafolio profesional desarrollado con **Astro** y **Tailw
 
 ## 🧱 Stack
 
-| Tecnología | Uso |
-| :--- | :--- |
-| [Astro](https://astro.build) | Framework de sitio estático |
-| [Tailwind CSS](https://tailwindcss.com) | Estilos y diseño responsive |
-| [Web3Forms](https://web3forms.com) | Backend de formulario de contacto |
-| [GitHub Pages](https://pages.github.com) | Hosting del sitio |
+| Tecnología                               | Uso                               |
+| :--------------------------------------- | :-------------------------------- |
+| [Astro](https://astro.build)             | Framework de sitio estático       |
+| [Tailwind CSS](https://tailwindcss.com)  | Estilos y diseño responsive       |
+| [Web3Forms](https://web3forms.com)       | Backend de formulario de contacto |
+| [GitHub Pages](https://pages.github.com) | Hosting del sitio                 |
 
 ---
 
@@ -56,14 +56,14 @@ Sitio web personal y portafolio profesional desarrollado con **Astro** y **Tailw
 
 Todos los comandos se ejecutan desde la raíz del proyecto:
 
-| Comando | Acción |
-| :--- | :--- |
-| `npm install` | Instala las dependencias |
-| `npm run dev` | Arranca el servidor de desarrollo en `localhost:4321` |
-| `npm run check` | Ejecuta `astro check` para validar Astro y TypeScript |
-| `npm run build` | Compila el sitio de producción en `./dist/` |
-| `npm run verify` | Ejecuta `npm run check && npm run build` |
-| `npm run preview` | Previsualiza el build de producción |
+| Comando           | Acción                                                |
+| :---------------- | :---------------------------------------------------- |
+| `npm install`     | Instala las dependencias                              |
+| `npm run dev`     | Arranca el servidor de desarrollo en `localhost:4321` |
+| `npm run check`   | Ejecuta `astro check` para validar Astro y TypeScript |
+| `npm run build`   | Compila el sitio de producción en `./dist/`           |
+| `npm run verify`  | Ejecuta `npm run check && npm run build`              |
+| `npm run preview` | Previsualiza el build de producción                   |
 
 ---
 
