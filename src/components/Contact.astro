@@ -1,12 +1,18 @@
 ---
-import SectionHeading from './SectionHeading.astro';
+import SectionHeading from "./SectionHeading.astro";
+import Icon from "./Icon.astro";
+import { socials } from "../data/cv";
 // Formulario de contacto conectado a Web3Forms (sin backend).
-// La clave es pública y solo permite recibir mensajes en tu correo.
-// Documentación: https://docs.web3forms.com
+// Anti-spam activo: hCaptcha (data-captcha) + Advanced Spam Filter "Strict"
+// configurado en el panel de Web3Forms. La key es PÚBLICA por diseño
+// (solo permite recibir mensajes en este correo).
+// Honeypot (_honey/botcheck) NO se usa: deprecado por el proveedor, que
+// recomienda captcha como protección (https://docs.web3forms.com/getting-started/customizations/spam-protection).
 // ---------------------------------------------------------------
 const FORM_ENDPOINT = "https://api.web3forms.com/submit";
 const ACCESS_KEY = "ee7a6d75-71c7-4d40-9749-747768cee065";
 ---
+
 <section id="contacto" class="py-20 lg:py-24 px-8 lg:px-16 bg-bg">
 	<div class="max-w-6xl mx-auto">
 		<div class="contact-panel">
@@ -17,18 +23,17 @@ const ACCESS_KEY = "ee7a6d75-71c7-4d40-9749-747768cee065";
 					<span>Disponible para nuevas oportunidades</span>
 				</div>
 				<p class="contact-intro-copy">
-					Estoy abierto a oportunidades laborales y colaboraciones en desarrollo de sistemas y mantenimiento de aplicaciones.
+					Estoy abierto a oportunidades laborales y colaboraciones en desarrollo de sistemas y mantenimiento de
+					aplicaciones.
 				</p>
 
 				<div class="contact-socials" aria-label="Perfiles profesionales">
-					<a href="https://www.linkedin.com/in/allan-z%C3%BA%C3%B1iga-359957181" target="_blank" rel="noopener noreferrer">
-						<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M20 20h-4v-6a2 2 0 00-4 0v6H8V10h4v1.5A3.5 3.5 0 0119.5 12v8zM4 8h4v12H4zM6 4a2 2 0 110 4 2 2 0 010-4z" /></svg>
-						LinkedIn
-					</a>
-					<a href="https://github.com/coboljcl" target="_blank" rel="noopener noreferrer">
-						<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.58 9.58 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 3.16 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z" /></svg>
-						GitHub
-					</a>
+					{socials.map((s) => (
+						<a href={s.href} target="_blank" rel="noopener noreferrer">
+							<Icon name={s.icon} variant="fill" />
+							{s.label}
+						</a>
+					))}
 				</div>
 			</div>
 
@@ -41,7 +46,14 @@ const ACCESS_KEY = "ee7a6d75-71c7-4d40-9749-747768cee065";
 					</div>
 					<div>
 						<label for="email">Correo electrónico *</label>
-						<input id="email" name="email" type="email" autocomplete="email" required placeholder="carlos@empresa.com" />
+						<input
+							id="email"
+							name="email"
+							type="email"
+							autocomplete="email"
+							required
+							placeholder="carlos@empresa.com"
+						/>
 					</div>
 				</div>
 				<div>
@@ -50,7 +62,13 @@ const ACCESS_KEY = "ee7a6d75-71c7-4d40-9749-747768cee065";
 				</div>
 				<div>
 					<label for="message">Mensaje *</label>
-					<textarea id="message" name="message" rows="5" required placeholder="Contame brevemente sobre la oportunidad o colaboración."></textarea>
+					<textarea
+						id="message"
+						name="message"
+						rows="5"
+						required
+						placeholder="Contame brevemente sobre la oportunidad o colaboración."
+					></textarea>
 				</div>
 
 				<div class="h-captcha" data-captcha="true"></div>
@@ -58,7 +76,7 @@ const ACCESS_KEY = "ee7a6d75-71c7-4d40-9749-747768cee065";
 				<div>
 					<button type="submit" aria-describedby="form-guidance">
 						Enviar mensaje
-						<svg aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-6-6l6 6-6 6" /></svg>
+						<Icon name="arrow-right" />
 					</button>
 					<p id="form-guidance">Tus datos se usan únicamente para responder a tu consulta.</p>
 					<p id="form-status" role="status" aria-live="polite"></p>
@@ -100,7 +118,7 @@ const ACCESS_KEY = "ee7a6d75-71c7-4d40-9749-747768cee065";
 				} else {
 					throw new Error(json.message || "error");
 				}
-			} catch (err) {
+			} catch {
 				if (status) status.textContent = "No se pudo enviar. Inténtalo de nuevo o usa otro medio de contacto.";
 			} finally {
 				button.disabled = false;
@@ -123,11 +141,14 @@ const ACCESS_KEY = "ee7a6d75-71c7-4d40-9749-747768cee065";
 	const contactSection = document.getElementById("contacto");
 	const contactForm = document.getElementById("contact-form");
 	if (contactSection && "IntersectionObserver" in window) {
-		const captchaObserver = new IntersectionObserver((entries) => {
-			if (!entries.some((entry) => entry.isIntersecting)) return;
-			loadCaptchaProvider();
-			captchaObserver.disconnect();
-		}, { rootMargin: "300px" });
+		const captchaObserver = new IntersectionObserver(
+			(entries) => {
+				if (!entries.some((entry) => entry.isIntersecting)) return;
+				loadCaptchaProvider();
+				captchaObserver.disconnect();
+			},
+			{ rootMargin: "300px" },
+		);
 		captchaObserver.observe(contactSection);
 	} else {
 		loadCaptchaProvider();

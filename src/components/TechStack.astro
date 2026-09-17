@@ -1,5 +1,6 @@
 ---
-import SectionHeading from './SectionHeading.astro';
+import SectionHeading from "./SectionHeading.astro";
+import Icon from "./Icon.astro";
 
 interface Props {
 	title?: string;
@@ -7,12 +8,7 @@ interface Props {
 }
 
 const { title = "Tecnologías destacadas" } = Astro.props;
-const pillarIcons = [
-	"M4 5h16v14H4zM8 9h.01M12 9h4M8 13h8M8 17h5",
-	"M12 3v18M5 8h14M5 16h14M8 3v18M16 3v18",
-	"M5 4h14v16H5zM8 8h8M8 12h5M8 16h8",
-	"M8 9l-4 3 4 3M16 9l4 3-4 3M13 5l-2 14",
-];
+const pillarIconNames = ["monitor", "db-grid", "code-box", "tecnologias"];
 const pillars = [
 	{
 		title: "Core Mainframe",
@@ -35,7 +31,6 @@ const pillars = [
 		tools: ["HTML", "CSS", "JavaScript", "VisualStudio"],
 	},
 ];
-
 ---
 
 <section id="tecnologias" class="py-20 lg:py-24 px-8 lg:px-16 bg-surface">
@@ -46,19 +41,19 @@ const pillars = [
 			{pillars.map((pillar, index) => (
 				<article
 					class="tech-pillar reveal"
-					class:list={{ 'reveal-delay-1': index % 2 === 1, 'reveal-delay-2': index >= 2 }}
+					class:list={{ "reveal-delay-1": index % 2 === 1, "reveal-delay-2": index >= 2 }}
 				>
 					<div class="tech-pillar-title-row">
 						<div class="tech-pillar-icon" aria-hidden="true">
-							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-								<path d={pillarIcons[index]} />
-							</svg>
+							<Icon name={pillarIconNames[index]} strokeWidth={1.8} />
 						</div>
 						<h3>{pillar.title}</h3>
 					</div>
 					<p>{pillar.description}</p>
 					<ul aria-label={`Tecnologías de ${pillar.title}`}>
-						{pillar.tools.map((tool) => <li>{tool}</li>)}
+						{pillar.tools.map((tool) => (
+							<li>{tool}</li>
+						))}
 					</ul>
 				</article>
 			))}

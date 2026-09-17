@@ -1,6 +1,7 @@
 ---
-import SectionHeading from './SectionHeading.astro';
-import type { ProjectItem } from '../types/cv';
+import SectionHeading from "./SectionHeading.astro";
+import Icon from "./Icon.astro";
+import type { ProjectItem } from "../types/cv";
 
 interface Props {
 	projects: ProjectItem[];
@@ -15,18 +16,18 @@ const { projects } = Astro.props;
 
 		<div class="grid gap-6">
 			{projects.map((project, i) => (
-				<article class="project-feature reveal" class:list={{ 'reveal-delay-1': i > 0 }}>
+				<article class="project-feature reveal" class:list={{ "reveal-delay-1": i > 0 }}>
 					<div class="project-feature-copy">
 						<div class="project-feature-kicker">
-							<svg aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v11.494m-9-5.747h18" />
-							</svg>
+							<Icon name="external-link" />
 							<span>Proyecto destacado</span>
 						</div>
 						<h3>{project.title}</h3>
 						<p>{project.description}</p>
 						<ul class="project-feature-tags" aria-label={`Tecnologías de ${project.title}`}>
-							{project.tags.map((tag) => <li>{tag}</li>)}
+							{project.tags.map((tag) => (
+								<li>{tag}</li>
+							))}
 						</ul>
 					</div>
 
@@ -39,9 +40,7 @@ const { projects } = Astro.props;
 						{project.link && (
 							<a href={project.link} target="_blank" rel="noopener noreferrer" aria-label="Ver perfil en GitHub">
 								Ver perfil en GitHub
-								<svg aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10" />
-								</svg>
+								<Icon name="arrow-up-right" />
 							</a>
 						)}
 					</div>
@@ -54,11 +53,12 @@ const { projects } = Astro.props;
 				<p class="font-semibold text-white">¿Querés conversar sobre un proyecto?</p>
 				<p class="mt-1 text-sm text-text-muted">Ponete en contacto para hablar de oportunidades o colaboraciones.</p>
 			</div>
-			<a href="#contacto" class="inline-flex shrink-0 items-center gap-2 rounded-lg border border-primary/50 px-4 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white">
+			<a
+				href="#contacto"
+				class="inline-flex shrink-0 items-center gap-2 rounded-lg border border-primary/50 px-4 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
+			>
 				Contactar
-				<svg class="h-4 w-4" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5l7 7-7 7" />
-				</svg>
+				<Icon name="arrow-forward" class="h-4 w-4" />
 			</a>
 		</div>
 	</div>

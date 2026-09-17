@@ -63,6 +63,12 @@ export interface ProjectItem {
 	link: string;
 }
 
+export interface SocialLink {
+	label: string;
+	href: string;
+	icon: string;
+}
+
 export interface CvData {
 	name: string;
 	title: string;

@@ -1,6 +1,6 @@
 ---
-import SectionHeading from './SectionHeading.astro';
-import type { SkillGroup } from '../types/cv';
+import SectionHeading from "./SectionHeading.astro";
+import type { SkillGroup } from "../types/cv";
 
 interface Props {
 	skillGroups: SkillGroup[];
@@ -8,11 +8,13 @@ interface Props {
 
 const { skillGroups } = Astro.props;
 const technologySkills = new Set(["HTML", "CSS", "JavaScript"]);
-const complementarySkills = [...new Set(
-	skillGroups
-		.filter((group) => group.category === "Web & Desarrollo" || group.category === "Idiomas")
-		.flatMap((group) => group.skills.filter((skill) => !technologySkills.has(skill))),
-)];
+const complementarySkills = [
+	...new Set(
+		skillGroups
+			.filter((group) => group.category === "Web & Desarrollo" || group.category === "Idiomas")
+			.flatMap((group) => group.skills.filter((skill) => !technologySkills.has(skill))),
+	),
+];
 ---
 
 <section id="habilidades" class="py-20 lg:py-24 px-8 lg:px-16 bg-surface">

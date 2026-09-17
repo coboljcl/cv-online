@@ -1,4 +1,9 @@
-import type { CvData } from '../types/cv';
+import type { CvData, SocialLink } from "../types/cv";
+
+export const socials: SocialLink[] = [
+	{ label: "LinkedIn", href: "https://www.linkedin.com/in/allan-z%C3%BA%C3%B1iga-359957181", icon: "linkedin" },
+	{ label: "GitHub", href: "https://github.com/coboljcl", icon: "github" },
+];
 
 export const cv: CvData = {
 	name: "Allan Zúñiga",
@@ -20,15 +25,51 @@ export const cv: CvData = {
 			"Mi enfoque combina el cumplimiento de especificaciones técnicas, pruebas unitarias y funcionales antes de cada despliegue, y documentación clara para facilitar el mantenimiento posterior.",
 		],
 		clients: [
-			{ name: "Bankinter", intermediaries: ["Sopra Steria", "Cypher"], description: "Desarrollo de programas COBOL batch y transacciones CICS para inversión, carteras y fondos." },
-			{ name: "MoraBanc", intermediaries: ["LUCATIC"], description: "Mantenimiento evolutivo y correctivo de aplicaciones COBOL con DB2, JCL y CICS." },
-			{ name: "Deutsche Bank", intermediaries: ["COMPUTER SPACE"], description: "Soporte y evolución de aplicaciones COBOL, con JCL y validación funcional previa al despliegue." },
+			{
+				name: "Bankinter",
+				intermediaries: ["Sopra Steria", "Cypher"],
+				description: "Desarrollo de programas COBOL batch y transacciones CICS para inversión, carteras y fondos.",
+			},
+			{
+				name: "MoraBanc",
+				intermediaries: ["LUCATIC"],
+				description: "Mantenimiento evolutivo y correctivo de aplicaciones COBOL con DB2, JCL y CICS.",
+			},
+			{
+				name: "Deutsche Bank",
+				intermediaries: ["COMPUTER SPACE"],
+				description: "Soporte y evolución de aplicaciones COBOL, con JCL y validación funcional previa al despliegue.",
+			},
 		],
 		metrics: [
-			{ value: "3+", label: "años de experiencia", context: "Experiencia", description: "Desarrollo y mantenimiento en sistemas bancarios críticos.", icon: "calendar" },
-			{ value: "100+", label: "programas COBOL", context: "Batch + CICS", description: "Implementados para inversión, carteras y fondos.", icon: "code" },
-			{ value: "3", label: "entidades bancarias", context: "Clientes", description: "Bankinter, MoraBanc y Deutsche Bank.", icon: "bank" },
-			{ value: "99.9%", label: "fiabilidad operativa", context: "SLA & QA", description: "Pruebas unitarias exhaustivas antes de PRE/PROD.", icon: "mainframe" },
+			{
+				value: "3+",
+				label: "años de experiencia",
+				context: "Experiencia",
+				description: "Desarrollo y mantenimiento en sistemas bancarios críticos.",
+				icon: "calendar",
+			},
+			{
+				value: "100+",
+				label: "programas COBOL",
+				context: "Batch + CICS",
+				description: "Implementados para inversión, carteras y fondos.",
+				icon: "code",
+			},
+			{
+				value: "3",
+				label: "entidades bancarias",
+				context: "Clientes",
+				description: "Bankinter, MoraBanc y Deutsche Bank.",
+				icon: "bank",
+			},
+			{
+				value: "99.9%",
+				label: "fiabilidad operativa",
+				context: "SLA & QA",
+				description: "Pruebas unitarias exhaustivas antes de PRE/PROD.",
+				icon: "mainframe",
+			},
 		],
 		qualityCycle: [
 			{ label: "Especificaciones técnicas", description: "Implementación alineada con los requisitos definidos." },
@@ -120,7 +161,15 @@ export const cv: CvData = {
 	skillGroups: [
 		{
 			category: "COBOL",
-			skills: ["Cursores (Open, Fetch, Close)", "Performs", "Occurs", "Llamadas a módulos", "COPYS", "Ficheros secuenciales", "Módulos/rutinas"],
+			skills: [
+				"Cursores (Open, Fetch, Close)",
+				"Performs",
+				"Occurs",
+				"Llamadas a módulos",
+				"COPYS",
+				"Ficheros secuenciales",
+				"Módulos/rutinas",
+			],
 		},
 		{
 			category: "DB2",
@@ -144,7 +193,20 @@ export const cv: CvData = {
 		},
 		{
 			category: "Web & Desarrollo",
-			skills: ["HTML", "CSS", "JavaScript", "Vibe coding con IA", "Agentes IA", "Subagentes", "LLMs", "Skills", "Agentes de consola", "Deploy online", "Arquitectura", "Seguridad"],
+			skills: [
+				"HTML",
+				"CSS",
+				"JavaScript",
+				"Vibe coding con IA",
+				"Agentes IA",
+				"Subagentes",
+				"LLMs",
+				"Skills",
+				"Agentes de consola",
+				"Deploy online",
+				"Arquitectura",
+				"Seguridad",
+			],
 		},
 		{
 			category: "Idiomas",
@@ -154,7 +216,8 @@ export const cv: CvData = {
 	projects: [
 		{
 			title: "CV Online — Portafolio profesional",
-			description: "Sitio web personal desarrollado con Astro y Tailwind CSS, usando componentes Astro, TypeScript, estilos responsive y despliegue estático para presentar el perfil profesional y la experiencia técnica.",
+			description:
+				"Sitio web personal desarrollado con Astro y Tailwind CSS, usando componentes Astro, TypeScript, estilos responsive y despliegue estático para presentar el perfil profesional y la experiencia técnica.",
 			tags: ["Astro", "Tailwind", "Vibe coding", "Agentes IA", "Git", "Deploy"],
 			link: "https://github.com/coboljcl",
 		},

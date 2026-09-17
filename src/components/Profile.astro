@@ -1,6 +1,7 @@
 ---
-import SectionHeading from './SectionHeading.astro';
-import type { Profile as ProfileData, ProfileMetric } from '../types/cv';
+import SectionHeading from "./SectionHeading.astro";
+import Icon from "./Icon.astro";
+import type { Profile as ProfileData, ProfileMetric } from "../types/cv";
 
 interface Props {
 	profile: ProfileData;
@@ -8,11 +9,11 @@ interface Props {
 
 const { profile } = Astro.props;
 
-const metricIcons: Record<ProfileMetric['icon'], string> = {
-	calendar: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
-	code: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
-	bank: "M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3",
-	mainframe: "M5 5h14v14H5zM9 9h6v2H9zm0 4h6v2H9z",
+const metricIconNames: Record<ProfileMetric["icon"], string> = {
+	calendar: "calendar",
+	code: "code",
+	bank: "bank-metric",
+	mainframe: "mainframe-metric",
 };
 ---
 
@@ -23,12 +24,13 @@ const metricIcons: Record<ProfileMetric['icon'], string> = {
 		<section class="profile-client-proof reveal reveal-delay-1" aria-labelledby="profile-client-heading">
 			<div class="profile-client-heading">
 				<div class="profile-client-trust-icon" aria-hidden="true">
-					<svg focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3zm-3 9 2 2 4-4" />
-					</svg>
+					<Icon name="shield-check" />
 				</div>
 				<div>
-					<h3 id="profile-client-heading"><span>Confianza en entornos</span><span>financieros críticos</span></h3>
+					<h3 id="profile-client-heading">
+						<span>Confianza en entornos</span>
+						<span>financieros críticos</span>
+					</h3>
 					<p class="profile-client-subtitle">Experiencia en desarrollo y mantenimiento de aplicaciones bancarias.</p>
 				</div>
 			</div>
@@ -55,9 +57,7 @@ const metricIcons: Record<ProfileMetric['icon'], string> = {
 					<dt class="profile-metric-label">{metric.label}</dt>
 					<dd class="profile-metric-details">
 						<div class="profile-metric-icon" aria-hidden="true">
-							<svg focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={metricIcons[metric.icon]} />
-							</svg>
+							<Icon name={metricIconNames[metric.icon]} />
 						</div>
 						<span class="profile-metric-context">{metric.context}</span>
 						<span class="profile-metric-value">{metric.value}</span>
@@ -72,17 +72,23 @@ const metricIcons: Record<ProfileMetric['icon'], string> = {
 				<p class="profile-editorial-eyebrow">{profile.eyebrow}</p>
 				<h3 class="profile-editorial-title">{profile.headline}</h3>
 				<div class="profile-editorial-summary">
-					{profile.summary.map((paragraph) => <p>{paragraph}</p>)}
+					{profile.summary.map((paragraph) => (
+						<p>{paragraph}</p>
+					))}
 				</div>
 			</article>
 
 			<aside class="profile-quality-panel" aria-labelledby="profile-quality-heading">
 				<p class="profile-proof-label">Ciclo de calidad</p>
-				<h3 id="profile-quality-heading" class="profile-quality-title">Del análisis a la trazabilidad</h3>
+				<h3 id="profile-quality-heading" class="profile-quality-title">
+					Del análisis a la trazabilidad
+				</h3>
 				<ol class="profile-quality-list">
 					{profile.qualityCycle.map((step, index) => (
 						<li class="profile-quality-step">
-							<span class="profile-quality-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+							<span class="profile-quality-index" aria-hidden="true">
+								{String(index + 1).padStart(2, "0")}
+							</span>
 							<div>
 								<h4>{step.label}</h4>
 								<p>{step.description}</p>
