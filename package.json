@@ -1,28 +1,42 @@
 {
-  "name": "cv-online",
-  "type": "module",
-  "version": "0.0.1",
-  "engines": {
-    "node": ">=22.12.0"
-  },
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "check": "astro check",
-    "verify": "npm run check && npm run build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.3.1",
-    "tailwindcss": "^4.3.3"
-  },
-  "allowScripts": {
-    "esbuild": true
-  },
-  "devDependencies": {
-    "@astrojs/check": "^0.9.10",
-    "typescript": "^6.0.3"
-  }
+	"name": "cv-online",
+	"type": "module",
+	"version": "0.0.1",
+	"engines": {
+		"node": ">=22.22.3"
+	},
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"check": "astro check",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"test": "playwright test",
+		"test:e2e": "playwright test",
+		"verify": "npm run check && npm run lint && npm run format:check && npm run build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@tailwindcss/vite": "^4.3.3",
+		"astro": "^7.3.1",
+		"tailwindcss": "^4.3.3"
+	},
+	"allowScripts": {
+		"esbuild": true
+	},
+	"devDependencies": {
+		"@astrojs/check": "^0.9.10",
+		"@eslint/js": "^10.0.1",
+		"@playwright/test": "^1.63.0",
+		"@types/node": "^22.20.3",
+		"eslint": "^10.10.0",
+		"eslint-plugin-astro": "^3.2.1",
+		"prettier": "^3.9.7",
+		"prettier-plugin-astro": "^1.0.1",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.70.0"
+	}
 }
